@@ -1,1 +1,11 @@
 <p>news works!</p>
+<div *ngIf="newsArticles.length > 0; else noNews">
+  <div *ngFor="let article of newsArticles" class="article">
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.description }}</p>
+    <a [href]="article.url" target="_blank">Leer más</a>
+  </div>
+</div>
+<ng-template #noNews>
+  <p>No se encontraron noticias.</p>
+</ng-template>
