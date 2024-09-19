@@ -12,7 +12,7 @@ export class NewsComponent implements OnInit{
 
   constructor(private appi: AppiNewsService) {}
   
-  newsArticles: any[] = [];
+  newsArticles: any[] = []; 
   
   ngOnInit(): void {
     this.appi.getNews("es").subscribe(
