@@ -16,4 +16,4 @@ export class AppiWeatherService {
     const url = `${this.API_URL}?q=${city}&appid=${this.API_KEY}&units=metric`;
     return this.httpClient.get<any>(url);
   }
-}
+} 
