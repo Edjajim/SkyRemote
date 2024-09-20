@@ -12,10 +12,16 @@ export class NewsComponent implements OnInit{
 
   constructor(private appi: AppiNewsService) {}
   
+  ngOnInit(): void {
+    this.appi.formSubmit$.subscribe((data: any) => {
+      this.updateNews(data)
+    });
+  }
+  
   newsArticles: any[] = [];
   
-  ngOnInit(): void {
-    this.appi.getNews("es").subscribe(
+  updateNews(city: string): void {
+    this.appi.getNews(city).subscribe(
       (response) => {
         this.newsArticles = response.articles;
       },
