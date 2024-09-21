@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppiWeatherService } from '../../core/appi-weather.service';
 import { CommonModule } from '@angular/common';
+import { AppiNewsService } from '../../core/appi-news.service';
 
 @Component({
   selector: 'app-weather',
@@ -9,13 +10,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './weather.component.html'
 })
 export class WeatherComponent implements OnInit {
-
+  now: Date;
   weatherData: any;  
-  constructor(private weatherService: AppiWeatherService) {}
+  constructor(private weatherService: AppiWeatherService, private newsService: AppiNewsService) { this.now = new Date();}
 
   ngOnInit(): void {
-    console.log('ngOnInit called'); 
-    this.getWeather('Guadalajara');  
+    this.newsService.formSubmit$.subscribe((data: any) => {
+      this.getWeather(data)
+    }); 
   }
 
   getWeather(city: string): void {
